@@ -124,8 +124,9 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         Log.i(TAG, "cacheReviewInfo: called");
         if (noContextOrActivity(result)) return;
 
-        final ReviewManager manager = ReviewManagerFactory.create(context);
-
+//        final ReviewManager manager = ReviewManagerFactory.create(context);
+        final ReviewManager manager = new FakeReviewManager(context);
+        
         final Task<ReviewInfo> request = manager.requestReviewFlow();
 
         Log.i(TAG, "cacheReviewInfo: Requesting review flow");
