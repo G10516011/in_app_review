@@ -14,6 +14,7 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
+import com.google.android.play.core.review.testing.FakeReviewManager;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -147,7 +148,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         Log.i(TAG, "requestReview: called");
         if (noContextOrActivity(result)) return;
 
-        final ReviewManager manager = ReviewManagerFactory.create(context);
+        final ReviewManager manager = new FakeReviewManager(context);
 
         if (reviewInfo != null) {
             launchReviewFlow(result, manager, reviewInfo);
